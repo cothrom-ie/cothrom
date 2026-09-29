@@ -42,16 +42,6 @@ services:
     volumes:
       - data_nocodb_data:/var/lib/postgresql/data
 
-  data_nocodb_assdisaster_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_assdisaster_db
-    environment:
-      POSTGRES_DB: assdisaster_db
-      POSTGRES_PASSWORD: ${DATA_ASSDISASTER_POSTGRES_PASSWORD}
-      POSTGRES_USER: ${DATA_ASSDISASTER_POSTGRES_USER}
-    volumes:
-      - data_nocodb_assdisaster_db:/var/lib/postgresql/data
-
   data_nocodb_fineopinion_db:
     <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
     container_name: data_nocodb_fineopinion_db
@@ -71,77 +61,6 @@ services:
       POSTGRES_USER: ${DATA_AWESOME_POSTGRES_USER}
     volumes:
       - data_nocodb_awesome_db:/var/lib/postgresql/data
-
-  data_nocodb_nia_cr_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_nia_cr_db
-    environment:
-      POSTGRES_DB: data_nocodb_nia_cr_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_NIA_CR_POSTGRES_PASSWORD}
-      POSTGRES_USER: data_nocodb_nia_cr_db
-    volumes:
-      - data_nocodb_nia_cr_db:/var/lib/postgresql/data
-
-
-  data_nocodb_nia_cdn_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_nia_cdn_db
-    environment:
-      POSTGRES_DB: data_nocodb_nia_cdn_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_NIA_CDN_POSTGRES_PASSWORD}
-      POSTGRES_USER: data_nocodb_nia_cdn_db
-    volumes:
-      - data_nocodb_nia_cdn_db:/var/lib/postgresql/data
-
-  data_nocodb_nia_vcasod_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_nia_vcasod_db
-    environment:
-      POSTGRES_DB: data_nocodb_nia_vcasod_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_NIA_VCASOD_POSTGRES_PASSWORD}
-      POSTGRES_USER: data_nocodb_nia_vcasod_db
-    volumes:
-      - data_nocodb_nia_vcasod_db:/var/lib/postgresql/data
-
-  data_nocodb_cothom_tracking_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_cothom_tracking_db
-    environment:
-      POSTGRES_DB: ${DATA_NOCODB_COTHOM_TRACKING_POSTGRES_DB_NAME}
-      POSTGRES_PASSWORD: ${DATA_NOCODB_COTHOM_TRACKING_POSTGRES_PASSWORD}
-      POSTGRES_USER: ${DATA_NOCODB_COTHOM_TRACKING_POSTGRES_USER}
-    volumes:
-      - data_nocodb_cothom_tracking_db:/var/lib/postgresql/data
-
-  data_nocodb_electronoise_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_electronoise_db
-    environment:
-      POSTGRES_DB: data_nocodb_electronoise_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_ELECTRONOISE_POSTGRES_PASSWORD}
-      POSTGRES_USER: postgres
-    volumes:
-      - data_nocodb_electronoise_db:/var/lib/postgresql/data
-
-  data_nocodb_ontime_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_ontime_db
-    environment:
-      POSTGRES_DB: data_nocodb_ontime_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_ONTIME_POSTGRES_PASSWORD}
-      POSTGRES_USER: postgres
-    volumes:
-      - data_nocodb_ontime_db:/var/lib/postgresql/data
-
-  data_nocodb_nia_inquiries_db:
-    <<: [*post_health_policy, *db_restart_policy, *post-image, *db-network, *postgres-labels]
-    container_name: data_nocodb_nia_inquiries_db
-    environment:
-      POSTGRES_DB: data_nocodb_nia_inquiries_db
-      POSTGRES_PASSWORD: ${DATA_NOCODB_NIA_INQUIRIES_POSTGRES_PASSWORD}
-      POSTGRES_USER: data_nocodb_nia_inquiries_db
-    volumes:
-      - data_nocodb_nia_inquiries_db:/var/lib/postgresql/data
 
 volumes:
   data_nocodb_data:

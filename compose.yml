@@ -49,7 +49,6 @@ include:
   - path: ./docker/draw.yml
   # - path: ./docker/files.yml
   - path: ./docker/home.yml
-  - path: ./docker/pi.yml
 
 ###
 ### Services

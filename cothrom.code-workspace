@@ -83,7 +83,7 @@
       "*.json": "jsonc",
     },
 
-    "cSpell.ignoreWords": [
+    "cSpell.words": [
       "Airtable",
       "DOLI",
       "INITDB",
@@ -111,8 +111,6 @@
       "projectsend",
       "stackname",
       "vcasod",
-    ],
-    "cSpell.words": [
       "Airtable",
       "appsmith",
       "Appsmith",
@@ -145,6 +143,7 @@
       "nocodb",
       "Omnitools",
       "ontime",
+      "openproject",
       "pastebin",
       "pgadmin",
       "PGID",
