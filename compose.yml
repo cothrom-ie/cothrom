@@ -45,9 +45,9 @@ x-op-postgres-network: &db-network
 
 include:
   - path: ./docker/data.yml
-  - path: ./docker/documents.yml
-  - path: ./docker/draw.yml
-  # - path: ./docker/files.yml
+  # - path: ./docker/documents.yml
+  # - path: ./docker/draw.yml
+  - path: ./docker/crm.yml
   - path: ./docker/home.yml
 
 ###
