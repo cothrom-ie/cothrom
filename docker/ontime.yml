@@ -1,0 +1,19 @@
+services:
+  ontime:
+    container_name: ontime
+    image: getontime/ontime:latest
+    ports:
+      - '4001:4001/tcp'
+      - '8888:8888/udp'
+      - '9999:9999/udp'
+    volumes:
+      - data_ontime:/data/
+    environment:
+      - TZ=$TZ
+    restart: unless-stopped
+    networks:
+      - frontend
+
+
+volumes:
+  data_ontime:

@@ -2,6 +2,8 @@
 # OPERATING SYSTEM FILES
 # =============================================================================
 
+docker/.data
+
 # macOS
 .DS_Store
 .DS_Store?

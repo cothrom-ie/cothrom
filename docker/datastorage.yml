@@ -64,13 +64,5 @@ services:
 
 volumes:
   data_nocodb_data:
-  data_nocodb_assdisaster_db:
   data_nocodb_fineopinion_db:
   data_nocodb_awesome_db:
-  data_nocodb_nia_cr_db:
-  data_nocodb_nia_cdn_db:
-  data_nocodb_nia_vcasod_db:
-  data_nocodb_cothom_tracking_db:
-  data_nocodb_electronoise_db:
-  data_nocodb_ontime_db:
-  data_nocodb_nia_inquiries_db:

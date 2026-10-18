@@ -1,0 +1,77 @@
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm
+    container_name: anythingllm
+    ports:
+      - '3001:3001'
+    cap_add:
+      - SYS_ADMIN
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - searxng-core
+      - searxng-valkey
+    environment:
+      - STORAGE_DIR=/app/server/storage
+      - JWT_SECRET=${LLM_JWT_SECRET}
+      - LLM_PROVIDER='openrouter'
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_MODEL_PREF=${OPENROUTER_MODEL_PREF}
+      - OPENROUTER_SERVICE_TIER='default'
+      - EMBEDDING_ENGINE=ollama
+      - EMBEDDING_BASE_PATH=${LLM_OLLAMA_BASE_PATH}
+      - EMBEDDING_MODEL_PREF=${LLM_OLLAMA_MODEL_PREF}
+      - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
+      - IMAGE_GEN_PROVIDER='openrouter'
+      - IMAGE_GEN_MODEL_PREF=${IMAGE_GEN_MODEL_PREF}
+      - IMAGE_GEN_SIZE_PREF='1024x1024'
+      - IMAGE_GEN_OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - VECTOR_DB=lancedb
+      - AGENT_SERPAPI_API_KEY=${AGENT_SERPAPI_API_KEY}
+      - AGENT_SERPAPI_ENGINE=google
+      - AGENT_SEARXNG_API_URL=${AGENT_SEARXNG_API_URL}
+      - AGENT_TAVILY_API_KEY=${AGENT_TAVILY_API_KEY}
+      - AGENT_EXA_API_KEY=${AGENT_EXA_API_KEY}
+      - AGENT_CRW_API_KEY=${AGENT_CRW_API_KEY}
+      - AGENT_ANYSEARCH_API_KEY=${AGENT_ANYSEARCH_API_KEY}
+      - AGENT_FIRECRAWL_API_KEY=${AGENT_FIRECRAWL_API_KEY}
+      - WHISPER_PROVIDER=local
+      - TTS_PROVIDER=native
+      - PASSWORDMINCHAR=8
+    volumes:
+      - anythingllm_storage:/app/server/storage
+      - ../data/anythingllm/.env:/app/server/.env
+    restart: always
+
+  searxng-core:
+    container_name: searxng-core
+    image: docker.io/searxng/searxng:${SEARXNG_VERSION:-latest}
+    restart: always
+    networks:
+      - backend
+    ports:
+      - ${SEARXNG_HOST:+${SEARXNG_HOST}:}${SEARXNG_PORT:-8080}:${SEARXNG_PORT:-8080}
+    environment:
+      - SEARXNG_VERSION=latest
+      - SEARXNG_PORT=8080
+    depends_on:
+      - searxng-valkey
+    volumes:
+      - ../data/searxng/:/etc/searxng/:Z
+      - searxng-data:/var/cache/searxng/
+
+  searxng-valkey:
+    container_name: searxng-valkey
+    image: docker.io/valkey/valkey:9-alpine
+    command: valkey-server --save 30 1 --loglevel warning
+    restart: always
+    networks:
+      - backend
+    volumes:
+      - valkey-data:/data/
+
+volumes:
+  searxng-data:
+  valkey-data:
+  anythingllm_storage:
